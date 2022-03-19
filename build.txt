@@ -1,0 +1,3 @@
+displayName = Terrmarium Mod
+author = Redestroyer
+version = 0.1

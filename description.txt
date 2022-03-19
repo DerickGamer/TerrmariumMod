@@ -1,0 +1,13 @@
+Terrmarium Mod adds some weapons and changes some things:
+
+- 3 New Weapons
+-- 3 meele weapons
+--- 3 broadswords
+---- Hero's Sword (Spectre Bar(9) + Shroomite Bar (9) Broken Hero's Sword @ Hardmode Anvil)
+---- True Hero's Sword (Heroic Sword + Beetle Husk(30) @ Hardmode Anvil)
+---- True Terra Blade (Terra Blade + True Heroic Sword @ Hardmode Anvil)
+- Recipe changes
+-- Terra Blade
+--- Replaced Broken Hero's Sword by 6 spectre bars and 6 shroomite bars
+-- Zenith
+--- Replaced Terra Blade by True Terra Blade
