@@ -24,6 +24,7 @@ namespace TerrmariumMod.Content.Projectiles
             Projectile.damage = 100000000; // Absurd
             Projectile.hostile = true;
             Projectile.width = Projectile.height = 104;
+			Projectile.timeLeft = 30;
             AIType = ProjectileID.SolarWhipSwordExplosion;
         }
         public override void PostAI()
@@ -68,13 +69,21 @@ namespace TerrmariumMod.Content.Projectiles
 			bool canKillWalls = true;
 			for (int i = 0; i < Main.player.Length; i++)
 			{
-				float playerDistance = (Projectile.position).Distance(Main.player[i].position) / 16;
-				if (playerDistance < explosionRadius)
+				if (!Main.player[i].active) continue;
+				if (Projectile.position.Distance(Main.player[i].position) / 16 < explosionRadius)
 				{
-					Main.player[i].Hurt(PlayerDeathReason.ByCustomReason($"{Main.player[i].name} discovered that it was a bomb"), 1000000000, 1, true, false, true);
+					Main.player[i].Hurt(PlayerDeathReason.ByCustomReason($"{Main.player[i].name} had too many light."), 1000000000, 1, true, false, true);
 					Main.player[i].AddBuff(BuffID.Dazed, 600);
 				}
 			}
+			for (int i = 0; i < Main.maxNPCs; i++)
+            {
+				if (!Main.npc[i].active) continue;
+                if (Projectile.position.Distance(Main.npc[i].position) / 16 < explosionRadius)
+                {
+					Main.npc[i].life -= 1000000000;
+                }
+            }
 			for (int x = minTileX; x <= maxTileX; x++)
 			{
 				for (int y = minTileY; y <= maxTileY; y++)

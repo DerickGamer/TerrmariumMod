@@ -18,15 +18,7 @@ internal class Mothron : GlobalNPC
     {
         if (!MainSystem.downedMothron)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText("The eclipsian creatures are getting anxious", 193, 114, 26);
-            }
-            else
-            {
-                NetworkText text = NetworkText.FromLiteral("The eclipsian creatures are getting anxious");
-                ChatHelper.BroadcastChatMessage(text, new Color(193, 114, 26));
-            }
+            Ultilities.SendInChat("The eclipsian creatures are getting anxious", 193, 114, 26);
         }
         MainSystem.downedMothron = true;
         base.OnKill(npc);

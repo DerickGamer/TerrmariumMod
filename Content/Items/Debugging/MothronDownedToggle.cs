@@ -14,7 +14,7 @@ namespace TerrmariumMod.Content.Items
         public override string Texture => "Terraria/Images/Item_1";
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FF0000:======DEBUG ITEM======]\nToggles downedMothron");
+            Tooltip.SetDefault("[c/FF0000:======DEBUG ITEM======\nIf you somehow achieved to get this item with no cheats, report it as a probable bug]\nToggles downedMothron");
         }
         public override void SetDefaults()
         {
@@ -22,20 +22,15 @@ namespace TerrmariumMod.Content.Items
             Item.rare = ItemRarityID.Blue;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = Item.useAnimation = 1;
-            Item.autoReuse = false;
+        }
+        public override bool? CanAutoReuseItem(Player player)
+        {
+            return false;
         }
         public override void UseAnimation(Player player)
         {
             MainSystem.downedMothron = !MainSystem.downedMothron;
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText(string.Format("The wariable downedMothron has been set to {0}", MainSystem.downedMothron), 255, 0, 0);
-            }
-            else
-            {
-                NetworkText text = NetworkText.FromFormattable("The wariable downedMothron has been set to {0}", MainSystem.downedMothron);
-                ChatHelper.BroadcastChatMessage(text, new Color(255, 0, 0));
-            }
+            Ultilities.SendInChat(string.Format("The wariable downedMothron has been set to {0}", MainSystem.downedMothron), Color.Red);
         }
     }
 }

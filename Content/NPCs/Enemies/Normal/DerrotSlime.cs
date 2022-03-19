@@ -44,7 +44,7 @@ namespace TerrmariumMod.Content.NPCs.Enemies.Normal
         }
         public override void OnKill()
         {
-            Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.position, new Vector2(0, 0), ModContent.GetInstance<Derroplosion>().Type, 250, 50);
+            Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.position, new Vector2(0, 0), ModContent.GetInstance<Derroplosion>().Type, 250, 50);
         }
     }
 }

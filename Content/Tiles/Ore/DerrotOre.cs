@@ -27,7 +27,7 @@ namespace TerrmariumMod.Content.Tiles
             AddMapEntry(new Color(5, 0, 7), name);
 
             ItemDrop = ModContent.ItemType<Items.Ore.DerrotOre>();
-            SoundType = SoundID.NPCHit54.SoundId;
+            SoundType = SoundID.NPCHit54.SoundId; // Wraith Sound ID
             SoundStyle = 1;
             MineResist = 10f;
             MinPick = 50;

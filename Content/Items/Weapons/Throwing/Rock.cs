@@ -29,10 +29,17 @@ namespace TerrmariumMod.Content.Items.Weapons.Throwing
             Item.rare = ItemRarityID.Blue;
             Item.value = 25;
             Item.shoot = ModContent.ProjectileType<RockP>();
+            Item.shootSpeed = 10;
             Item.useStyle = ItemUseStyleID.Swing;
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe(25).
+                AddIngredient(ItemID.StoneBlock).
+                AddTile(TileID.TinkerersWorkbench).
+                Register();
+        }
 
-        
     }
     public class RockP : ModProjectile
     {

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.Chat;
 using Terraria.ModLoader;
 
 namespace TerrmariumMod
@@ -63,5 +65,30 @@ namespace TerrmariumMod
             return false;
         }
         public static int ToInt(this bool self) => self ? 1 : 0;
+        public static void SendInChat(string text, int r, int g, int b) => SendInChat(text, new Color(r, g, b));
+        public static void SendInChat(string text, Color color)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(text, color);
+            }
+            else
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), color);
+            }
+        }
+        public static void SendInChat(NetworkText text, int r, int g, int b) => SendInChat(text, new Color(r, g, b));
+        public static void SendInChat(NetworkText text, Color color)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(text, color);
+            }
+            else
+            {
+                ChatHelper.BroadcastChatMessage(text, color);
+            }
+        }
+
     }
 }
