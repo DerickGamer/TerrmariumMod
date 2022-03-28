@@ -10,6 +10,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.Chat;
 using Terraria.ModLoader;
+using TerrmariumMod.Content.Items.Misc;
 
 namespace TerrmariumMod
 {
@@ -17,9 +18,10 @@ namespace TerrmariumMod
     {
         public static class RecipeGroups
         {
-            public static readonly RecipeGroup EvilBar = new RecipeGroup(() => "Evil Bar", ItemID.DemoniteBar, ItemID.CrimtaneBar);
-            public static readonly RecipeGroup EvilRemains = new RecipeGroup(() => "Evil Remains", ItemID.ShadowScale, ItemID.TissueSample);
-            public static readonly RecipeGroup PreHardmodeAnvil = new RecipeGroup(() => "Pre-hardmode Anvil", ItemID.IronAnvil, ItemID.LeadAnvil);
+            public static readonly RecipeGroup EvilBar = new(() => "Evil Bar", GetTypeOfItem<EvilBar>(), ItemID.DemoniteBar, ItemID.CrimtaneBar);
+            public static readonly RecipeGroup EvilRemains = new(() => "Evil Remains", GetTypeOfItem<EvilRemains>(), ItemID.ShadowScale, ItemID.TissueSample);
+            public static readonly RecipeGroup PreHardmodeAnvil = new(() => "Pre-hardmode Anvil", GetTypeOfItem<PreHardmodeAnvil>(), ItemID.IronAnvil, ItemID.LeadAnvil);
+            public static readonly RecipeGroup HardmodeAnvil = new(() => "Hardmode Anvil", GetTypeOfItem<PreHardmodeAnvil>(), ItemID.MythrilAnvil, ItemID.OrichalcumAnvil);
         }
         public static int NumMechDowned => NPC.downedMechBoss1.ToInt() + NPC.downedMechBoss2.ToInt() + NPC.downedMechBoss3.ToInt();
         public static bool BossIsAlive
@@ -89,6 +91,10 @@ namespace TerrmariumMod
                 ChatHelper.BroadcastChatMessage(text, color);
             }
         }
-
+        public static int GetTypeOfItem<T>() where T : ModItem => ModContent.GetInstance<T>().Type;
+        public static int GetTypeOfProjectile<T>() where T : ModProjectile => ModContent.GetInstance<T>().Type;
+        public static int GetTypeOfNPC<T>() where T : ModNPC => ModContent.GetInstance<T>().Type;
+        public static int GetTypeOfTile<T>() where T : ModTile => ModContent.GetInstance<T>().Type;
+        public static int GetTypeOfTileEntity<T>() where T : ModTileEntity => ModContent.GetInstance<T>().Type;
     }
 }
